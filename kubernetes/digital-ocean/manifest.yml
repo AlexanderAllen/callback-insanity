@@ -1,14 +1,18 @@
 ---
+# A Kubernetes Service is an abstraction which defines a logical set of Pods and
+# a policy by which to access them - sometimes called a micro-service. The set of Pods
+# targeted by a Service is (usually) determined by a Label Selector.
+# https://kubernetes.io/docs/concepts/services-networking/service/
 kind: Service
 apiVersion: v1
 metadata:
-  name: gatsby-ghost
+  name: ghost
 spec:
   type: LoadBalancer
   selector:
-    app: gatsby-ghost
+    app: ghost
   ports:
-    - name: http
+    - name: ghost-backend
       protocol: TCP
       port: 80
       targetPort: 2368
@@ -16,7 +20,7 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: gatsby-ghost
+  name: ghost
 spec:
   replicas: 1
   template:
