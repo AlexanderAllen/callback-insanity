@@ -1,0 +1,32 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: gatsby-ghost
+spec:
+  type: LoadBalancer
+  selector:
+    app: gatsby-ghost
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 2368
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: gatsby-ghost
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ghost
+    spec:
+      containers:
+      - name: ghost
+        image: ghost:alpine
+        ports:
+        - containerPort: 2368
+          protocol: TCP
