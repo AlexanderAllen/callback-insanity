@@ -38,3 +38,11 @@ spec:
         env:
           - name: url
             value: http://cms.callbackinsanity.com
+        volumeMounts:
+        - mountPath: "/var/lib/ghost/content"
+          name: nfs-volume
+      volumes:
+        - name: nfs-volume
+          nfs:
+            server: 10.245.170.168
+            path: /
