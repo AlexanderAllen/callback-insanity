@@ -32,5 +32,9 @@ spec:
       - name: ghost
         image: ghost:alpine
         ports:
+          # Ghost by default listens on 2368.
         - containerPort: 2368
           protocol: TCP
+        env:
+          - name: url
+            value: http://cms.callbackinsanity.com
