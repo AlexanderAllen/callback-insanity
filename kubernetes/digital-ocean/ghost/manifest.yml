@@ -8,7 +8,6 @@ apiVersion: v1
 metadata:
   name: ghost
 spec:
-  type: LoadBalancer
   selector:
     app: ghost
   ports:
