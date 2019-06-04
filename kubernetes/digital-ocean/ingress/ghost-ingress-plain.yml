@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: echo-ingress
+  name: ghost-ingress-plain
 spec:
   rules:
   - host: ghost.callbackinsanity.com

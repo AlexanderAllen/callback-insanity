@@ -8,8 +8,8 @@ metadata:
 spec:
   tls:
   - hosts:
-    - ghost.cmscallbackinsanity.com
-    - cms.cmscallbackinsanity.com
+    - ghost.callbackinsanity.com
+    - cms.callbackinsanity.com
     secretName: letsencrypt-prod
   rules:
   - host: ghost.callbackinsanity.com
