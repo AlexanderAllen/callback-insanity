@@ -1,0 +1,12 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: echo-ingress
+spec:
+  rules:
+  - host: ghost.callbackinsanity.com
+    http:
+      paths:
+      - backend:
+          serviceName: ghost
+          servicePort: 80
