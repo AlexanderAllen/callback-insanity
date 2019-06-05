@@ -4,3 +4,8 @@
 
 [template]
   incoming-hooks = ["Ghost"]
+
+[[headers]]
+  for = "/content/images/*"
+  [headers.values]
+    Cache-Control = "public, s-max-age=604800"
