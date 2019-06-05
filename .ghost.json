@@ -1,10 +1,10 @@
 {
   "development": {
-    "apiUrl": "http://cms.callbackinsanity.com",
+    "apiUrl": "https://cms.callbackinsanity.com",
     "contentApiKey": "062d823ae97f31c407246ff80b"
   },
   "production": {
-    "apiUrl": "http://cms.callbackinsanity.com",
+    "apiUrl": "https://cms.callbackinsanity.com",
     "contentApiKey": "062d823ae97f31c407246ff80b"
   }
 }
