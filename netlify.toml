@@ -10,13 +10,16 @@
   [headers.values]
     Cache-Control = "public, s-max-age=604800"
     Netlify-Headers = "netlify headers set"
+    X-Insane = "true"
 [[headers]]
   for = "/*.css"
   [headers.values]
     Cache-Control = "public, s-max-age=604800"
     Netlify-Headers = "netlify headers set"
+    X-Insane = "true"
 [[headers]]
   for = "/*.js"
   [headers.values]
     Cache-Control = "public, s-max-age=604800"
     Netlify-Headers = "netlify headers set"
+    X-Insane = "true"
