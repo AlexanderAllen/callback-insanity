@@ -9,3 +9,14 @@
   for = "/content/images/*"
   [headers.values]
     Cache-Control = "public, s-max-age=604800"
+    Netlify-Headers = "netlify headers set"
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, s-max-age=604800"
+    Netlify-Headers = "netlify headers set"
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, s-max-age=604800"
+    Netlify-Headers = "netlify headers set"
