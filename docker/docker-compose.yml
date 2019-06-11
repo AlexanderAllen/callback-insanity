@@ -31,3 +31,32 @@ services:
       - develop
       - -H
       - 0.0.0.0
+
+  ghost:
+    image: alexanderallen/ghost
+    build:
+      context: .
+      dockerfile: ./build/ghost/Dockerfile
+    ports:
+      # Development port.
+      - 127.0.0.1:2368:2368
+    # volumes:
+      # Dependencies compile differently on the alpine container than on windows/osx,
+      # so mounting the whole repo, node_modules included, might be an issue.
+      # - ..:/app
+      # Moung .ghost.json used by Gatsby to source data from Ghost CMS.
+      # - ../.ghost.json:/app/.ghost.json
+    environment:
+      # Sourced by gatsby-config.json for comms with ghost.js.
+      # GHOST_API_URL: "http://cms.callbackinsanity.com"
+      # GHOST_CONTENT_API_KEY: 062d823ae97f31c407246ff80b
+      # Used in gatsby-config.json to determine which env var config to use.
+      NODE_ENV: development
+    # working_dir: /app
+    # entrypoint:
+    #   - yarn
+    #   - run
+    #   - gatsby
+    #   - develop
+    #   - -H
+    #   - 0.0.0.0
