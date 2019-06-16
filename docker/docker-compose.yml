@@ -37,6 +37,12 @@ services:
     build:
       context: .
       dockerfile: ./build/ghost/Dockerfile
+      args:
+        NODE_ENV: development
+        GHOST_CLI_VERSION: 1.11.0
+        GHOST_VERSION: 2.23.2
+        GHOST_INSTALL: /var/lib/ghost
+        GHOST_CONTENT: /var/lib/ghost/content
     ports:
       # Development port.
       - 127.0.0.1:2368:2368
@@ -50,7 +56,9 @@ services:
       # Sourced by gatsby-config.json for comms with ghost.js.
       # GHOST_API_URL: "http://cms.callbackinsanity.com"
       # GHOST_CONTENT_API_KEY: 062d823ae97f31c407246ff80b
+
       # Used in gatsby-config.json to determine which env var config to use.
+      # Can be development or production. Default is production.
       NODE_ENV: development
     # working_dir: /app
     # entrypoint:
