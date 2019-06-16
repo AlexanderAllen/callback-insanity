@@ -19,7 +19,9 @@ ARG GHOST_VERSION=2.23.2
 
 ENV NODE_ENV "${NODE_ENV}"
 ENV GHOST_CLI_VERSION "${GHOST_CLI_VERSION}"
-RUN npm install -g "ghost-cli@${GHOST_CLI_VERSION}"
+RUN npm install -g "ghost-cli@${GHOST_CLI_VERSION}"; \
+		npm cache verify; \
+		npm cache clean --force;
 
 ENV GHOST_INSTALL "${GHOST_INSTALL}"
 ENV GHOST_CONTENT "${GHOST_CONTENT}"
