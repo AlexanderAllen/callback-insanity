@@ -42,6 +42,7 @@ RUN set -ex; \
   chown node:node "${GHOST_INSTALL}"; \
   su-exec node ghost install "${GHOST_VERSION}" --db sqlite3 --no-prompt --no-stack --no-setup --dir "${GHOST_INSTALL}";
 
+# Copy baseline settings.
 COPY ./build/ghost/config.development.json "${GHOST_INSTALL}/config.development.json"
 
 RUN set -ex; \
@@ -51,8 +52,8 @@ RUN set -ex; \
 	\
 # Tell Ghost to listen on all ips and not prompt for additional configuration
 	cd "${GHOST_INSTALL}"; \
-	su-exec node ghost config --ip 0.0.0.0 --port 2368 --no-prompt --db sqlite3 --url http://localhost:2368 --dbpath "$GHOST_CONTENT/data/ghost.db"; \
-	su-exec node ghost config paths.contentPath "$GHOST_CONTENT"; \
+	su-exec node ghost config --ip 0.0.0.0 --port 2368 --no-prompt --db sqlite3 --url http://localhost:2368 --dbpath "${GHOST_CONTENT}/data/ghost.db"; \
+	su-exec node ghost config paths.contentPath "${GHOST_CONTENT}"; \
 	\
 	# Configure Cloudinary.
 	# su-exec node ghost config storage.active ghost-storage-cloudinary; \
@@ -67,12 +68,12 @@ RUN set -ex; \
 	# su-exec node ghost config storage.ghost-storage-cloudinary.fetch.secure = true; \
 	\
 # make a config.json symlink for NODE_ENV=development (and sanity check that it's correct)
-	# su-exec node ln -s config.production.json "$GHOST_INSTALL/config.development.json" \
-	# && readlink -f "$GHOST_INSTALL/config.development.json" \
+	su-exec node ln -s config.development.json "${GHOST_INSTALL}/config.production.json" \
+	&& readlink -f "${GHOST_INSTALL}/config.production.json" \
 # need to save initial content for pre-seeding empty volumes
-	mv "$GHOST_CONTENT" "$GHOST_INSTALL/content.orig" \
-	&& mkdir -p "$GHOST_CONTENT" \
-	&& chown node:node "$GHOST_CONTENT"
+	mv "${GHOST_CONTENT}" "${GHOST_INSTALL}/content.orig" \
+	&& mkdir -p "${GHOST_CONTENT}" \
+	&& chown node:node "${GHOST_CONTENT}"
 
 
 RUN set -eux; \
