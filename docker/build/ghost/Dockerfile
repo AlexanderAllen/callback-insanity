@@ -6,6 +6,7 @@ FROM node:10-alpine
 RUN apk add --no-cache 'su-exec>=0.2'
 
 RUN apk add --no-cache \
+		dumb-init \
 # add "bash" for "[["
 		bash
 
@@ -102,7 +103,7 @@ WORKDIR $GHOST_INSTALL
 VOLUME $GHOST_CONTENT
 
 COPY ./build/ghost/docker-entrypoint.sh /usr/local/bin
-ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 
 EXPOSE 2368
-CMD ["node", "current/index.js"]
+CMD ["/usr/local/bin/docker-entrypoint.sh", "node", "current/index.js"]
